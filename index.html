@@ -16,7 +16,7 @@ var modifyArr = (arr) => {
 
 		if(location.hash == "") return arr;
 
-	return filter(function(v, i) {
+	return arr.filter(function(v, i) {
   // pomiń co X element
   return i % parseInt(location.hash.substring(1)) == 0;
 });
