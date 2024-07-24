@@ -12,6 +12,16 @@
      
 var ctx = document.getElementById("myLineChart").getContext('2d');
 
+var modifyArr = (arr) => {
+
+		if(location.hash == "") return arr;
+
+	return filter(function(v, i) {
+  // pomiń co X element
+  return i % parseInt(location.hash.substring(1)) == 0;
+});
+}
+
 fetch('https://api.codetabs.com/v1/proxy?quest=https://bubbleam.pl/players')
     .then(response => response.json())
     .then(gracze => {
@@ -29,9 +39,9 @@ fetch('https://api.codetabs.com/v1/proxy?quest=https://bubbleam.pl/players')
         }
             */
         //Zbieranie wszystkich unikalnych timestamp
-        const allTimestamps = [...new Set([...gracze['443'].map(item => item[0]), ...gracze["2053"].map(item => item[0]),
-            ...gracze["2083"].map(item => item[0]), ...gracze["2087"].map(item => item[0]),
-            ...gracze["2096"].map(item => item[0]), ...gracze["8443"].map(item => item[0])])].sort();
+        const allTimestamps = [...new Set([...modifyArr(gracze['443']).map(item => item[0]), ...modifyArr(gracze["2053"]).map(item => item[0]),
+            ...modifyArr(gracze["2083"]).map(item => item[0]), ...modifyArr(gracze["2087"]).map(item => item[0]),
+            ...modifyArr(gracze["2096"]).map(item => item[0]), ...modifyArr(gracze["8443"]).map(item => item[0])])].sort();
        // const allTimestamps = [...new Set([...gracze['443'].map(item => item[0]), ...gracze["2053"].map(item => item[0])])];
        //  allTimestamps.sort();
 
