@@ -37,8 +37,13 @@ fetch('https://api.codetabs.com/v1/proxy?quest=https://bubbleam.pl/players')
         function convertTimestampToDate(timestamp) {
             const date = new Date(timestamp);
             return date.toISOString().slice(0, 19).replace('T', ' ');
-        }
-            */
+        }*/
+
+	for(var a in gracze) {
+		gracze[a] = gracze[a].filter((ar) => Array.isArray(ar));
+ 	}
+ 
+            
         //Zbieranie wszystkich unikalnych timestamp
         const allTimestamps = [...new Set([...modifyArr(gracze['443']).map(item => item[0]), ...modifyArr(gracze["2053"]).map(item => item[0]),
             ...modifyArr(gracze["2083"]).map(item => item[0]), ...modifyArr(gracze["2087"]).map(item => item[0]),
